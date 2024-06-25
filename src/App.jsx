@@ -6,14 +6,22 @@ export default function App() {
   const [name, setName] = useState("");
 
   function addFriend() {
-    const newFriends = [...friends];
-    newFriends.push({ picture, name });
-    setFriends(newFriends);
-    // setFriends([...friends, { picture, name }]);
+    // const newFriends = [...friends];
+    // newFriends.push({ picture, name });
+    // setFriends(newFriends);
+    // const newFriend = { picture, name };
+    setFriends([...friends, { picture, name }]);
     setName("");
     setPicture("");
-    console.log(friends);
+    // console.log(e.target.value);
   }
+
+  const friendInfo = friends.map((friend) => (
+    <div key={`${friend.name}`}>
+      <img width="100px" src={friend.picture} alt={friend.name} />
+      <span>{friend.name}</span>
+    </div>
+  ));
 
   return (
     <div>
@@ -38,6 +46,7 @@ export default function App() {
       <button type="button" onClick={addFriend}>
         Add Friend
       </button>
+      {friendInfo}
     </div>
   );
 }
