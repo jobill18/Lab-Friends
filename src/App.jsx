@@ -1,9 +1,24 @@
+import { useEffect } from "react";
 import { useState } from "react";
+import axios from "axios";
 
 export default function App() {
   const [friends, setFriends] = useState([]);
   const [picture, setPicture] = useState("");
   const [name, setName] = useState("");
+
+  // const getSavedFriends = async () => {
+  //   const res = await axios.get("/app/friends");
+  //   setFriends(res.data);
+  // };
+
+  // useEffect(() => {
+  //   getSavedFriends();
+  // }, []);
+
+  useEffect(() => {
+    axios.get("/api/friends").then((res) => setFriends(res.data));
+  }, []);
 
   function addFriend() {
     // const newFriends = [...friends];
